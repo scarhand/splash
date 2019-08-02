@@ -6,12 +6,18 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap" rel="stylesheet"> 
     <style type="text/css">
       @keyframes bg-color {
-        0% { background-color: #e74c3c; }
-        20% { background-color: #f1c40f; }
-        40% { background-color: #1abc9c; }
-        60% { background-color: #3498db; }
-        80% { background-color: #9b59b6; }
+        0%   { background-color: #e74c3c; }
+        20%  { background-color: #f1c40f; }
+        40%  { background-color: #1abc9c; }
+        60%  { background-color: #3498db; }
+        80%  { background-color: #9b59b6; }
         100% { background-color: #e74c3c; }
+      }
+      @keyframes ticker {
+        0%   { margin-top: 0; }
+        33%  { margin-top: -40px; }
+        66%  { margin-top: -80px; }
+        100% { margin-top: 0; }
       }
       html, body {
         margin: 0;
@@ -34,6 +40,7 @@
         font-size: 64px;
         padding: 0;
         margin: 0 0 0 0;
+        text-align: center;
       }
       p, a {
         font-size: 30px;
@@ -62,6 +69,27 @@
       .social ul li a:hover svg {
         transition: all .5s linear;
         transform: rotateY(180deg);
+      }
+      @media(max-width: 500px) {
+        .me {
+          height: 40px;
+          overflow: hidden;
+        }
+        .me ul {
+          margin: 10px 20px 0 20px;
+          display: block;
+          line-height: 40px;
+          animation: ticker 8s infinite cubic-bezier(1, 0, .5, 0);
+        }
+        .me ul:hover {
+          animation-play-state: paused;
+        }
+        .me ul li {
+          text-align: center;
+        }
+        .me ul li:not(:last-of-type):after {
+          content: none;
+        }
       }
     </style>
   </head>
