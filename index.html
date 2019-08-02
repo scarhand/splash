@@ -5,6 +5,14 @@
     <base target="_blank">
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap" rel="stylesheet"> 
     <style type="text/css">
+      @-webkit-keyframes bg-color {
+        0%   { background-color: #e74c3c; }
+        20%  { background-color: #f1c40f; }
+        40%  { background-color: #1abc9c; }
+        60%  { background-color: #3498db; }
+        80%  { background-color: #9b59b6; }
+        100% { background-color: #e74c3c; }
+      }
       @keyframes bg-color {
         0%   { background-color: #e74c3c; }
         20%  { background-color: #f1c40f; }
@@ -13,11 +21,49 @@
         80%  { background-color: #9b59b6; }
         100% { background-color: #e74c3c; }
       }
+      @-webkit-keyframes ticker {
+        0%   { margin-top: 0; }
+        33%  { margin-top: -40px; }
+        66%  { margin-top: -80px; }
+        100% { margin-top: 0; }
+      }
       @keyframes ticker {
         0%   { margin-top: 0; }
         33%  { margin-top: -40px; }
         66%  { margin-top: -80px; }
         100% { margin-top: 0; }
+      }
+      @-webkit-keyframes slide-up {
+        0% {
+          -webkit-transform: translate3d(0, 32px, 0);
+                  transform: translate3d(0, 32px, 0); 
+          opacity: 0;
+        }
+        80% {
+          -webkit-transform: translate3d(0, -15px, 0);
+                  transform: translate3d(0, -15px, 0); 
+        }
+        100% { 
+          -webkit-transform: translate3d(0, 0, 0); 
+                  transform: translate3d(0, 0, 0); 
+          opacity: 1; 
+        }
+      }
+      @keyframes slide-up {
+        0% {
+          -webkit-transform: translate3d(0, 32px, 0);
+                  transform: translate3d(0, 32px, 0); 
+          opacity: 0;
+        }
+        80% {
+          -webkit-transform: translate3d(0, -15px, 0);
+                  transform: translate3d(0, -15px, 0); 
+        }
+        100% { 
+          -webkit-transform: translate3d(0, 0, 0); 
+                  transform: translate3d(0, 0, 0); 
+          opacity: 1; 
+        }
       }
       html, body {
         margin: 0;
@@ -28,12 +74,22 @@
       body {
         font-family: Merriweather, sans-serif;
         background: #e74c3c;
-        animation: bg-color 60s linear infinite;
+        -webkit-animation: bg-color 60s linear infinite;
+                animation: bg-color 60s linear infinite;
         color: #FFFFFF;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
       }
       h1 {
         font-weight: 700;
@@ -52,9 +108,53 @@
       }
       .me ul, .social ul {
         list-style: none;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         margin: 25px 0 0 0;
         padding: 0;
+      }
+      .me ul li {
+        -webkit-animation: slide-up 0.3s ease-in-out forwards;
+                animation: slide-up 0.3s ease-in-out forwards;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        opacity: 0;
+      }
+      .social ul li {
+        -webkit-animation: slide-up 0.2s ease-in-out forwards;
+                animation: slide-up 0.2s ease-in-out forwards;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        opacity: 0;
+      }
+      .me ul li:nth-child(1) {
+        -webkit-animation-delay: .3s;
+                animation-delay: .3s;
+      }
+      .me ul li:nth-child(2) {
+        -webkit-animation-delay: .6s;
+                animation-delay: .6s;
+      }
+      .me ul li:nth-child(3) {
+        -webkit-animation-delay: .9s;
+                animation-delay: .9s;
+      }
+      .social ul li:nth-child(1) {
+        -webkit-animation-delay: 1.2s;
+                animation-delay: 1.2s;
+      }
+      .social ul li:nth-child(2) {
+        -webkit-animation-delay: 1.4s;
+                animation-delay: 1.4s;
+      }
+      .social ul li:nth-child(3) {
+        -webkit-animation-delay: 1.6s;
+                animation-delay: 1.6s;
+      }
+      .social ul li:nth-child(4) {
+        -webkit-animation-delay: 1.8s;
+                animation-delay: 1.8s;
       }
       .me ul li:not(:last-of-type):after {
         content: '|';
@@ -67,8 +167,11 @@
         fill: #FFFFFF;
       }
       .social ul li a:hover svg {
+        -webkit-transition: all .5s linear;
+        -o-transition: all .5s linear;
         transition: all .5s linear;
-        transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+                transform: rotateY(180deg);
       }
       @media(max-width: 500px) {
         .me {
@@ -79,10 +182,19 @@
           margin: 10px 20px 0 20px;
           display: block;
           line-height: 40px;
-          animation: ticker 8s infinite cubic-bezier(1, 0, .5, 0);
+          -webkit-animation: ticker 8s infinite cubic-bezier(1, 0, .5, 0);
+                  animation: ticker 8s infinite cubic-bezier(1, 0, .5, 0);
         }
         .me ul:hover {
-          animation-play-state: paused;
+          -webkit-animation-play-state: paused;
+                  animation-play-state: paused;
+        }
+        .me ul li, .social ul li {
+          -webkit-animation: none;
+                  animation: none;
+          -webkit-transform: translate3d(0, 0, 0);
+                  transform: translate3d(0, 0, 0);
+          opacity: 1;
         }
         .me ul li {
           text-align: center;
@@ -101,7 +213,7 @@
       <li>Dad Joke</li>
     </ul>
   </div>
-  <div class="social">
+  <nav class="social">
     <ul>
       <li>
         <a href="https://github.com/scarhand">
